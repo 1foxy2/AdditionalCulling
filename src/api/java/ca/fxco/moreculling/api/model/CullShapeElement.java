@@ -1,14 +1,14 @@
 package ca.fxco.moreculling.api.model;
 
 import com.google.gson.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.util.GsonHelper;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Type;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class CullShapeElement {
 
     public final Vector3f from;
@@ -19,7 +19,7 @@ public class CullShapeElement {
         this.to = to;
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static class Deserializer implements JsonDeserializer<CullShapeElement> {
 
         public Deserializer() {}

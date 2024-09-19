@@ -2,7 +2,7 @@ package ca.fxco.moreculling.mixin.compat;
 
 import ca.fxco.moreculling.states.ItemRendererStates;
 import ca.fxco.moreculling.utils.DirectionUtils;
-import com.bawnorton.mixinsquared.TargetHandler;
+//import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;

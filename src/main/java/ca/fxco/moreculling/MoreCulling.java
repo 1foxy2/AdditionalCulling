@@ -4,17 +4,19 @@ import ca.fxco.moreculling.config.ConfigUpdater;
 import ca.fxco.moreculling.config.MoreCullingConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MoreCulling implements ClientModInitializer {
+@Mod(value = MoreCulling.MOD_ID, dist = Dist.CLIENT)
+public class MoreCulling {
 
     public static int CURRENT_VERSION = 1;
 
@@ -27,8 +29,7 @@ public class MoreCulling implements ClientModInitializer {
     public static Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static MoreCullingConfig CONFIG;
 
-    @Override
-    public void onInitializeClient() {
+    public MoreCulling() {
         AutoConfig.register(MoreCullingConfig.class, (conf, clazz) -> new Toml4jConfigSerializer<>(conf, clazz) {
             public MoreCullingConfig deserialize() {
                 try {

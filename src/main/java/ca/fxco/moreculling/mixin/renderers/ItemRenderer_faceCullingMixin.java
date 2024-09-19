@@ -59,8 +59,7 @@ public class ItemRenderer_faceCullingMixin {
             method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/ItemBlockRenderTypes;getRenderType(" +
-                            "Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/client/renderer/RenderType;"
+                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderPasses(Lnet/minecraft/world/item/ItemStack;Z)Ljava/util/List;"
             )
     )
     private void moreculling$fastTransparencyChecks(ItemStack stack, ItemDisplayContext displayContext,
@@ -82,20 +81,18 @@ public class ItemRenderer_faceCullingMixin {
             method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/block/model/ItemTransforms;getTransform(" +
-                            "Lnet/minecraft/world/item/ItemDisplayContext;)" +
-                            "Lnet/minecraft/client/renderer/block/model/ItemTransform;"
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;handleCameraTransforms(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/item/ItemDisplayContext;Z)Lnet/minecraft/client/resources/model/BakedModel;"
             )
     )
-    private ItemTransform moreculling$getTransformation(
-            ItemTransforms modelTransformation, ItemDisplayContext renderMode,
-            Operation<ItemTransform> original, @Share("transformation") LocalRef<ItemTransform> transformationRef
+    private BakedModel moreculling$getTransformation(
+            PoseStack poseStack, BakedModel model, ItemDisplayContext cameraTransformType, boolean applyLeftHandTransform,
+            Operation<BakedModel> original, @Share("transformation") LocalRef<ItemTransform> transformationRef
     ) {
-        ItemTransform transformation = original.call(modelTransformation, renderMode);
+        ItemTransform transformation = model.getTransforms().getTransform(cameraTransformType);
         if (ItemRendererStates.ITEM_FRAME != null) {
             transformationRef.set(transformation);
         }
-        return transformation;
+        return original.call(poseStack, model, cameraTransformType, applyLeftHandTransform);
     }
 
     @Inject(

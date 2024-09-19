@@ -10,24 +10,22 @@ import ca.fxco.moreculling.api.config.defaults.ConfigIntOption;
 import ca.fxco.moreculling.config.cloth.*;
 import ca.fxco.moreculling.config.option.LeavesCullingMode;
 import ca.fxco.moreculling.utils.CompatUtils;
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ModMenuConfig implements ModMenuApi {
+public class ModMenuConfig {//implements ModMenuApi {
 
     //TODO: Convert all settings to ConfigOption using the MoreCulling config API if those settings can be converted
 
@@ -51,8 +49,8 @@ public class ModMenuConfig implements ModMenuApi {
             if (modId.equals("minecraft")) {
                 continue;
             }
-            ModContainer con = FabricLoader.getInstance().getModContainer(modId).orElse(null);
-            DynamicBooleanListEntry aMod = new DynamicBooleanBuilder(con == null ? modId : con.getMetadata().getName())
+            ModContainer con = ModList.get().getModContainerById(modId).orElse(null);
+            DynamicBooleanListEntry aMod = new DynamicBooleanBuilder(con == null ? modId : con.getModInfo().getDisplayName())
                     .setValue(entry.getBooleanValue())
                     .setDefaultValue(MoreCulling.CONFIG.useOnModdedBlocksByDefault)
                     .setTooltip(Component.literal(modId))
@@ -284,10 +282,10 @@ public class ModMenuConfig implements ModMenuApi {
         return builder.build();
     }
 
-    @Override
+   /* @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return ModMenuConfig::createConfigScreen;
-    }
+    }*/
 
     //TODO: Add more Sodium option to the ModMenu options
     @SuppressWarnings("unchecked")
@@ -325,13 +323,13 @@ public class ModMenuConfig implements ModMenuApi {
                             });
                     if (option instanceof ConfigModLimit configModLimit) {
                         optionBuilder.setModLimited(
-                                FabricLoader.getInstance().isModLoaded(configModLimit.getLimitedModId()),
+                                ModList.get().isLoaded(configModLimit.getLimitedModId()),
                                 Component.translatable(configModLimit.getTranslationKey())
                         );
                     }
                     if (option instanceof ConfigModIncompatibility configModIncompatibility) {
                         optionBuilder.setModIncompatibility(
-                                FabricLoader.getInstance().isModLoaded(configModIncompatibility.getIncompatibleModId()),
+                                ModList.get().isLoaded(configModIncompatibility.getIncompatibleModId()),
                                 configModIncompatibility.getMessage()
                         );
                     }

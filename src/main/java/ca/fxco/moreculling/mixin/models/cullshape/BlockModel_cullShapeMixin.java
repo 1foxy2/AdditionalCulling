@@ -5,6 +5,7 @@ import ca.fxco.moreculling.api.model.CullShapeElement;
 import ca.fxco.moreculling.api.model.ExtendedUnbakedModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.math.Transformation;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockElementFace;
@@ -90,10 +91,7 @@ public abstract class BlockModel_cullShapeMixin implements ExtendedUnbakedModel 
     }
 
     @Redirect(
-            method = "bake(Lnet/minecraft/client/resources/model/ModelBaker;" +
-                    "Lnet/minecraft/client/renderer/block/model/BlockModel;Ljava/util/function/Function;" +
-                    "Lnet/minecraft/client/resources/model/ModelState;Z)" +
-                    "Lnet/minecraft/client/resources/model/BakedModel;",
+            method = "bakeVanilla",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"

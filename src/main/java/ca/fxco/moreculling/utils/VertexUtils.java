@@ -6,7 +6,7 @@ import net.minecraft.core.Direction;
 import org.joml.*;
 import org.joml.Math;
 
-import static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.EncodingFormat.*;
+import static net.caffeinemc.mods.sodium.client.render.frapi.mesh.EncodingFormat.VERTEX_STRIDE;
 
 public class VertexUtils {
 

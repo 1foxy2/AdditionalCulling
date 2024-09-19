@@ -2,15 +2,24 @@ package ca.fxco.moreculling.config;
 
 import ca.fxco.moreculling.MoreCulling;
 import ca.fxco.moreculling.api.config.*;
-import ca.fxco.moreculling.api.config.defaults.*;
+import ca.fxco.moreculling.api.config.defaults.ConfigBooleanOption;
+import ca.fxco.moreculling.api.config.defaults.ConfigEnumOption;
+import ca.fxco.moreculling.api.config.defaults.ConfigFloatOption;
+import ca.fxco.moreculling.api.config.defaults.ConfigIntOption;
 import ca.fxco.moreculling.config.option.LeavesCullingMode;
-import ca.fxco.moreculling.config.sodium.*;
+import ca.fxco.moreculling.config.sodium.FloatSliderControl;
+import ca.fxco.moreculling.config.sodium.IntSliderControl;
+import ca.fxco.moreculling.config.sodium.MoreCullingSodiumOptionImpl;
+import ca.fxco.moreculling.config.sodium.MoreCullingSodiumOptionsStorage;
 import com.google.common.collect.ImmutableList;
-import net.caffeinemc.mods.sodium.client.gui.options.*;
+import net.caffeinemc.mods.sodium.client.gui.options.OptionFlag;
+import net.caffeinemc.mods.sodium.client.gui.options.OptionGroup;
+import net.caffeinemc.mods.sodium.client.gui.options.OptionImpact;
+import net.caffeinemc.mods.sodium.client.gui.options.OptionPage;
 import net.caffeinemc.mods.sodium.client.gui.options.control.CyclingControl;
 import net.caffeinemc.mods.sodium.client.gui.options.control.TickBoxControl;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.chat.Component;
+import net.neoforged.fml.ModList;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -316,13 +325,13 @@ public class SodiumOptionPage {
                     }
                     if (option instanceof ConfigModLimit configModLimit) {
                         optionBuilder.setModLimited(
-                                FabricLoader.getInstance().isModLoaded(configModLimit.getLimitedModId()),
+                                ModList.get().isLoaded(configModLimit.getLimitedModId()),
                                 Component.translatable(configModLimit.getTranslationKey())
                         );
                     }
                     if (option instanceof ConfigModIncompatibility configModIncompatibility) {
                         optionBuilder.setModIncompatibility(
-                                FabricLoader.getInstance().isModLoaded(configModIncompatibility.getIncompatibleModId()),
+                                ModList.get().isLoaded(configModIncompatibility.getIncompatibleModId()),
                                 configModIncompatibility.getMessage()
                         );
                     }
