@@ -1,14 +1,14 @@
 package ca.fxco.moreculling.utils;
 
 import ca.fxco.moreculling.api.data.QuadBounds;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.core.Direction;
-import org.joml.*;
 import org.joml.Math;
-
-import static net.caffeinemc.mods.sodium.client.render.frapi.mesh.EncodingFormat.VERTEX_STRIDE;
+import org.joml.*;
 
 public class VertexUtils {
+    public static final int VERTEX_STRIDE = DefaultVertexFormat.BLOCK.getVertexSize() / 4;;
 
     public static final float FAST_NORM = 0.0625F; // 1 / 16
 

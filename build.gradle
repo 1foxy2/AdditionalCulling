@@ -49,7 +49,6 @@ runs {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-sourceSets.main.java { srcDir 'src/api' }
 sourceSets {
     api{
         java {

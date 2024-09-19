@@ -5,7 +5,6 @@ import ca.fxco.moreculling.api.model.CullShapeElement;
 import ca.fxco.moreculling.api.model.ExtendedUnbakedModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.math.Transformation;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockElementFace;
