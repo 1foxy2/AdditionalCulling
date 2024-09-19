@@ -26,7 +26,7 @@ public class MoreCulling {
     public static ModelManager bakedModelManager = null;
     public static BlockRenderDispatcher blockRenderManager = null;
 
-    public static final String MOD_ID = "moreculling";
+    public static final String MOD_ID = "additionalculling";
     public static final TagKey<Block> DONT_CULL = TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(MOD_ID, "dont_cull"));
 
     public static Logger LOGGER = LoggerFactory.getLogger(MOD_ID);

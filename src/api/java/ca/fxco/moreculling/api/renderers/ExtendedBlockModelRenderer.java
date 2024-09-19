@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 /**
- * This interface allows you to call the MoreCulling methods used for block model rendering.
+ * This interface allows you to call the AdditionalCulling methods used for block model rendering.
  * This gives you access to the custom MoreCulling rendering methods, in order to allow everyone to benefit from the
  * performance boost that MoreCulling can offer.<br/>
  * Use these methods over ones provided in {@link ModelBlockRenderer}

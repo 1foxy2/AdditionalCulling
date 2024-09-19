@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * BakedOpacity is an interface that should be used on classes that extend BakedModel
- * It allows your custom models to take full advantage of MoreCulling's culling techniques.
+ * It allows your custom models to take full advantage of AdditionalCulling's culling techniques.
  *
  * @since 0.3.0
  */
@@ -17,7 +17,7 @@ public interface BakedOpacity {
 
     /**
      * States if any of the textures of the model that are on a face of the block are translucent.
-     * If they are not translucent, MoreCulling will be able to provide faster culling for its states.
+     * If they are not translucent, AdditionalCulling will be able to provide faster culling for its states.
      * <p>
      * Some baked models will require a blockstate in order to provide more accurate translucency checks,
      * usually if no blockstate is passed it will work fine, although some baked models will always return true.
@@ -33,7 +33,7 @@ public interface BakedOpacity {
 
     /**
      * States if any of the textures of the model that are on a face of the block are translucent.
-     * If they are not translucent, MoreCulling will be able to provide faster culling for its states.
+     * If they are not translucent, AdditionalCulling will be able to provide faster culling for its states.
      * <p>
      * Some baked models will require a blockstate in order to provide more accurate translucency checks,
      * usually if no blockstate is passed it will work fine, although some baked models will always return true.

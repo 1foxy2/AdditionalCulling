@@ -10,7 +10,7 @@ import java.util.Optional;
 
 /**
  * MoreBlockCulling is an interface that should be used on classes that extend Block
- * It allows you to implement custom culling techniques on blocks, while still using MoreCulling's blockstate culling
+ * It allows you to implement custom culling techniques on blocks, while still using AdditionalCulling's blockstate culling
  *
  * @since 0.3.0
  */

@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * This interface allows you to call the MoreCulling methods used for item rendering.
+ * This interface allows you to call the AdditionalCulling methods used for item rendering.
  * This gives you access to the custom MoreCulling rendering methods, in order to allow everyone to benefit from the
  * performance boost that MoreCulling can offer.<br/>
  * Use these methods over ones provided in {@link ItemRenderer}

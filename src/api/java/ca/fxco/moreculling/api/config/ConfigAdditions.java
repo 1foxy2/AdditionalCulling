@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.function.BooleanSupplier;
 
 /**
- * Add your config options to this class to add them to the MoreCulling config
+ * Add your config options to this class to add them to the AdditionalCulling config
  *
  * @since 0.12.0
  */
@@ -18,7 +18,7 @@ public class ConfigAdditions {
     private static final HashSet<String> separateGroupTabs = new HashSet<>();
 
     /**
-     * Use this method to add option to the MoreCulling config
+     * Use this method to add option to the AdditionalCulling config
      *
      * @since 0.12.0
      */
@@ -27,7 +27,7 @@ public class ConfigAdditions {
     }
 
     /**
-     * Use this method to disable an option in the MoreCulling config.
+     * Use this method to disable an option in the AdditionalCulling config.
      * @param id        The option to be disabled. This will attempt to match against the option name, if the option
      *                  uses a translation key, it will attempt to match the translation key.
      * @param reason    The reason why this option was disabled.

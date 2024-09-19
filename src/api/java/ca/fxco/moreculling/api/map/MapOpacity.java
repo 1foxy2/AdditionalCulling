@@ -10,7 +10,7 @@ public interface MapOpacity {
 
     /**
      * States if the map texture has any transparent/clear pixels.
-     * MoreCulling will be able to skip one face of the item frame if it has no transparency
+     * AdditionalCulling will be able to skip one face of the item frame if it has no transparency
      *
      * @since 0.9.0
      * @deprecated As of v0.25.0, you should now be using {@link #moreculling$hasTransparency}
@@ -22,7 +22,7 @@ public interface MapOpacity {
 
     /**
      * States if the map texture has any transparent/clear pixels.
-     * MoreCulling will be able to skip one face of the item frame if it has no transparency
+     * AdditionalCulling will be able to skip one face of the item frame if it has no transparency
      *
      * @since 0.25.0
      */

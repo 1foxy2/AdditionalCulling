@@ -1,7 +1,6 @@
 package ca.fxco.moreculling.utils;
 
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.LoadingModList;
 
 public class CompatUtils {
     public static final boolean IS_SODIUM_LOADED = ModList.get().isLoaded("sodium");

@@ -4,8 +4,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * ConfigOption is a small option type that allows you to extend the MoreCulling config. It is not recommended unless
- * your mod is a direct extension to MoreCulling and the setting fits in with the MoreCulling options
+ * ConfigOption is a small option type that allows you to extend the AdditionalCulling config. It is not recommended unless
+ * your mod is a direct extension to AdditionalCulling and the setting fits in with the MoreCulling options
  *
  * @since 0.12.0
  */

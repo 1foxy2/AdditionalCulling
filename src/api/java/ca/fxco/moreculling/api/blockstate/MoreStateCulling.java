@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.Optional;
 
 /**
- * MoreStateCulling is an interface that allows you to call MoreCulling's block culling checks directly from blockstate
+ * MoreStateCulling is an interface that allows you to call AdditionalCulling's block culling checks directly from blockstate
  *
  * @since 0.7.0
  */

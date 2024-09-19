@@ -2,7 +2,7 @@ package ca.fxco.moreculling.api.quad;
 
 /**
  * BakedOpacity is an interface that should be used on classes that extend BakedQuad
- * It allows your custom quads to take full advantage of MoreCulling's culling techniques.
+ * It allows your custom quads to take full advantage of AdditionalCulling's culling techniques.
  * This is only used for quads that get used in BakedModels that contain more than 1 model
  *
  * @since 0.12.0
