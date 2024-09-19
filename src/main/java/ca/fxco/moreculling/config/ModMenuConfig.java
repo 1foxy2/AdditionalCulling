@@ -29,7 +29,7 @@ public class ModMenuConfig {//implements ModMenuApi {
 
     //TODO: Convert all settings to ConfigOption using the MoreCulling config API if those settings can be converted
 
-    private static Screen createConfigScreen(Screen parent) {
+    public static Screen createConfigScreen(ModContainer container, Screen parent) {
         ConfigBuilder builder = MoreCullingClothConfigBuilder.create().setParentScreen(parent);
         builder.setSavingRunnable(() -> AutoConfig.getConfigHolder(MoreCullingConfig.class).save());
         ConfigCategory generalCategory = builder.getOrCreateCategory(Component.translatable("moreculling.config.category.general"));

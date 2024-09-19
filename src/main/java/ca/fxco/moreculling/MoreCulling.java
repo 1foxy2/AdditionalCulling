@@ -1,7 +1,10 @@
 package ca.fxco.moreculling;
 
 import ca.fxco.moreculling.config.ConfigUpdater;
+import ca.fxco.moreculling.config.ModMenuConfig;
 import ca.fxco.moreculling.config.MoreCullingConfig;
+import ca.fxco.moreculling.utils.CompatUtils;
+import com.terraformersmc.mod_menu.ModMenu;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -42,6 +45,8 @@ public class MoreCulling {
         CONFIG = AutoConfig.getConfigHolder(MoreCullingConfig.class).getConfig();
         ConfigUpdater.updateConfig(CONFIG);
         CONFIG.modCompatibility.defaultReturnValue(CONFIG.useOnModdedBlocksByDefault);
+        if (CompatUtils.IS_BETTER_MODLIST_LOADED)
+            ModMenu.configScreenFactories.put(MOD_ID, ModMenuConfig::createConfigScreen);
     }
 
     public void saveConfig() {
