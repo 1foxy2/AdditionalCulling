@@ -49,6 +49,7 @@ runs {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.java { srcDir 'src/api' }
 sourceSets {
     api{
         java {
@@ -131,14 +132,6 @@ tasks.register('apiJar', Jar) {
     from sourceSets.api.output
 }
 
-/*tasks.register('remapApiJar', RemapJarTask) {
-    dependsOn apiJar
-    archiveClassifier.set("api")
-
-    input = apiJar.archiveFile.get().asFile
-    addNestedDependencies = false
-}
-jar.dependsOn remapApiJar*/
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
