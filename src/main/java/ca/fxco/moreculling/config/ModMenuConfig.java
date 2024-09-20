@@ -233,9 +233,9 @@ public class ModMenuConfig {//implements ModMenuApi {
                 .setSaveConsumer(newValue -> MoreCulling.CONFIG.useItemFrameLOD = newValue)
                 .setChangeConsumer((instance, value) -> itemFrameLODRange.setEnabledState(value))
                 .build();
-        DynamicFloatSliderEntry itemFrame3FaceCullingRange = new DynamicFloatSliderBuilder("moreculling.config.option.itemFrame3FaceCullingRange", 2F, 16F, 0.2F) // Between 0 & 16 blocks
+        DynamicIntSliderEntry itemFrame3FaceCullingRange = new DynamicIntSliderBuilder("moreculling.config.option.itemFrame3FaceCullingRange", 2, 16) // Between 0 & 16 blocks
                 .setValue(MoreCulling.CONFIG.itemFrame3FaceCullingRange)
-                .setDefaultValue(4F)
+                .setDefaultValue(4)
                 .setTooltip(Component.translatable("moreculling.config.option.itemFrame3FaceCullingRange.tooltip"))
                 .setSaveConsumer(newValue -> MoreCulling.CONFIG.itemFrame3FaceCullingRange = newValue)
                 .build();

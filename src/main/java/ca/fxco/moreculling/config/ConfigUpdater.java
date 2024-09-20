@@ -10,7 +10,7 @@ public class ConfigUpdater {
     public static void updateConfig(MoreCullingConfig config) {
         if (config.version == 0) { // Use real number that humans can compute
             config.itemFrameLODRange = MathUtils.clamp((int) Math.round(Math.sqrt(config.itemFrameLODRange)), 16, 256);
-            config.itemFrame3FaceCullingRange = MathUtils.clamp((float) Math.sqrt(config.itemFrame3FaceCullingRange), 2F, 16F);
+            config.itemFrame3FaceCullingRange = MathUtils.clamp((int) Math.round(Math.sqrt(config.itemFrame3FaceCullingRange)), 2, 16);
         }
         if (config.version != CURRENT_VERSION) {
             config.version = CURRENT_VERSION;

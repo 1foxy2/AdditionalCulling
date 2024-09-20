@@ -7,8 +7,6 @@ import ca.fxco.moreculling.api.config.defaults.ConfigEnumOption;
 import ca.fxco.moreculling.api.config.defaults.ConfigFloatOption;
 import ca.fxco.moreculling.api.config.defaults.ConfigIntOption;
 import ca.fxco.moreculling.config.option.LeavesCullingMode;
-import ca.fxco.moreculling.config.sodium.FloatSliderControl;
-import ca.fxco.moreculling.config.sodium.IntSliderControl;
 import ca.fxco.moreculling.config.sodium.MoreCullingSodiumOptionImpl;
 import ca.fxco.moreculling.config.sodium.MoreCullingSodiumOptionsStorage;
 import com.google.common.collect.ImmutableList;
@@ -16,7 +14,9 @@ import net.caffeinemc.mods.sodium.client.gui.options.OptionFlag;
 import net.caffeinemc.mods.sodium.client.gui.options.OptionGroup;
 import net.caffeinemc.mods.sodium.client.gui.options.OptionImpact;
 import net.caffeinemc.mods.sodium.client.gui.options.OptionPage;
+import net.caffeinemc.mods.sodium.client.gui.options.control.ControlValueFormatter;
 import net.caffeinemc.mods.sodium.client.gui.options.control.CyclingControl;
+import net.caffeinemc.mods.sodium.client.gui.options.control.SliderControl;
 import net.caffeinemc.mods.sodium.client.gui.options.control.TickBoxControl;
 import net.minecraft.network.chat.Component;
 import net.neoforged.fml.ModList;
@@ -86,7 +86,7 @@ public class SodiumOptionPage {
         MoreCullingSodiumOptionImpl<MoreCullingConfig, Integer> leavesCullingAmount = MoreCullingSodiumOptionImpl.createBuilder(int.class, morecullingOpts)
                 .setNameTranslation("moreculling.config.option.leavesCullingAmount")
                 .setTooltip(Component.translatable("moreculling.config.option.leavesCullingAmount.tooltip"))
-                .setControl(option -> new IntSliderControl(option, 1, 4, 1, Component.literal("%d")))
+                .setControl(option -> new SliderControl(option, 1, 4, 1, ControlValueFormatter.number()))
                 .setEnabled(morecullingOpts.getData().leavesCullingMode.hasAmount())
                 .setImpact(OptionImpact.MEDIUM)
                 .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
@@ -171,7 +171,7 @@ public class SodiumOptionPage {
         MoreCullingSodiumOptionImpl<MoreCullingConfig, Integer> itemFrameLODRange = MoreCullingSodiumOptionImpl.createBuilder(int.class, morecullingOpts)
                 .setNameTranslation("moreculling.config.option.itemFrameLODRange")
                 .setTooltip(Component.translatable("moreculling.config.option.itemFrameLODRange.tooltip"))
-                .setControl(option -> new IntSliderControl(option, 16, 256, 1, Component.literal("%d")))
+                .setControl(option -> new SliderControl(option, 16, 256, 1, ControlValueFormatter.number()))
                 .setEnabled(morecullingOpts.getData().useCustomItemFrameRenderer && morecullingOpts.getData().useItemFrameLOD)
                 .setImpact(OptionImpact.MEDIUM)
                 .setBinding((opts, value) -> opts.itemFrameLODRange = value, opts -> opts.itemFrameLODRange)
@@ -185,10 +185,10 @@ public class SodiumOptionPage {
                 .setBinding((opts, value) -> opts.useItemFrameLOD = value, opts -> opts.useItemFrameLOD)
                 .onChanged((instance, value) -> itemFrameLODRange.setAvailable(instance.isAvailable() && value))
                 .build();
-        MoreCullingSodiumOptionImpl<MoreCullingConfig, Float> itemFrame3FaceRange = MoreCullingSodiumOptionImpl.createBuilder(float.class, morecullingOpts)
+        MoreCullingSodiumOptionImpl<MoreCullingConfig, Integer> itemFrame3FaceRange = MoreCullingSodiumOptionImpl.createBuilder(int.class, morecullingOpts)
                 .setNameTranslation("moreculling.config.option.itemFrame3FaceCullingRange")
                 .setTooltip(Component.translatable("moreculling.config.option.itemFrame3FaceCullingRange.tooltip"))
-                .setControl(option -> new FloatSliderControl(option, 2F, 16F, 0.2F, Component.literal("%2.1f")))
+                .setControl(option -> new SliderControl(option, 2, 16, 1, ControlValueFormatter.number()))
                 .setEnabled(morecullingOpts.getData().useCustomItemFrameRenderer && morecullingOpts.getData().useItemFrame3FaceCulling)
                 .setImpact(OptionImpact.MEDIUM)
                 .setBinding((opts, value) -> opts.itemFrame3FaceCullingRange = value, opts -> opts.itemFrame3FaceCullingRange)
@@ -290,12 +290,12 @@ public class SodiumOptionPage {
                             .setControl(TickBoxControl::new)
                             .setBinding((opts, value) -> option.getSetter().accept(value), opts -> (Boolean) option.getGetter().get());
                 } else if (option instanceof ConfigFloatOption floatOption) {
-                    optionBuilder = MoreCullingSodiumOptionImpl.createBuilder(float.class, morecullingOpts)
-                            .setControl(opt -> new FloatSliderControl(opt, floatOption.getMin(), floatOption.getMax(), floatOption.getInterval(), Component.literal(floatOption.getStringFormat())))
-                            .setBinding((opts, value) -> option.getSetter().accept(value), opts -> (Float) option.getGetter().get());
+                    optionBuilder = MoreCullingSodiumOptionImpl.createBuilder(int.class, morecullingOpts)
+                            .setControl(opt -> new SliderControl(opt, floatOption.getMin().intValue(), floatOption.getMax().intValue(), floatOption.getInterval().intValue(), (v) -> Component.literal(floatOption.getStringFormat())))
+                            .setBinding((opts, value) -> option.getSetter().accept(value), opts -> (int) option.getGetter().get());
                 } else if (option instanceof ConfigIntOption intOption) {
                     optionBuilder = MoreCullingSodiumOptionImpl.createBuilder(int.class, morecullingOpts)
-                            .setControl(opt -> new IntSliderControl(opt, intOption.getMin(), intOption.getMax(), intOption.getInterval(), Component.literal(intOption.getStringFormat())))
+                            .setControl(opt -> new SliderControl(opt, intOption.getMin(), intOption.getMax(), intOption.getInterval(), (v) -> Component.literal(intOption.getStringFormat())))
                             .setBinding((opts, value) -> option.getSetter().accept(value), opts -> (Integer) option.getGetter().get());
                 } else if (option instanceof ConfigEnumOption<?> enumOption) {
                     optionBuilder = MoreCullingSodiumOptionImpl.createBuilder(Enum.class, morecullingOpts)

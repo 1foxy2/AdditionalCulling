@@ -33,7 +33,7 @@ public class MoreCullingConfig implements ConfigData {
 
     public boolean useItemFrame3FaceCulling = true;
 
-    public float itemFrame3FaceCullingRange = 4F; // default 4 blocks away
+    public int itemFrame3FaceCullingRange = 4; // default 4 blocks away
 
     public LeavesCullingMode leavesCullingMode = LeavesCullingMode.DEFAULT;
 
